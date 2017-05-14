@@ -7,11 +7,7 @@ import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
-import android.support.v4.app.NotificationCompat.WearableExtender;
-import android.support.v4.media.TransportMediator;
-import android.support.v4.widget.DrawerLayout;
-import android.support.v4.widget.SwipeRefreshLayout;
-import android.support.v7.app.AppCompatActivity;
+
 import android.text.TextUtils;
 import android.view.KeyEvent;
 import android.view.View;
@@ -21,12 +17,8 @@ import android.widget.SeekBar;
 import android.widget.SeekBar.OnSeekBarChangeListener;
 import android.widget.TextView;
 import android.widget.Toast;
-import com.google.zxing.WriterException;
-import com.obm.mylibrary.BuildConfig;
-import com.obm.mylibrary.PicFromPrintUtils;
-import com.obm.mylibrary.PrintConnect;
-import com.obm.mylibrary.PrintUtil;
-import com.obm.mylibrary.ScanConnect;
+//import com.google.zxing.WriterException;
+
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 
@@ -41,10 +33,10 @@ public class MainActivity extends Activity {
     private Handler mHandler;
     private PrintConnect mPrintConnect;
     private ScanConnect mScanConnect;
-    private SeekBar sb_con;
+/*    private SeekBar sb_con;
     private SeekBar sb_height;
     private SeekBar sb_speed;
-    private SeekBar sb_width;
+    private SeekBar sb_width;*/
     private int speed;
     private EditText text;
     private TextView tv_con;
@@ -53,13 +45,22 @@ public class MainActivity extends Activity {
     private TextView tv_speed;
     private TextView tv_width;
     private int width;
+    private TextView txtBarcode;
 
     class myHandler extends Handler {
 
         public void handleMessage(Message msg) {
             super.handleMessage(msg);
-            switch (msg.what) {
-                case R.styleable.Toolbar_subtitleTextAppearance /*11*/:
+
+            if (!TextUtils.isEmpty(msg.obj.toString())) {
+                String str = msg.obj.toString();
+
+                MainActivity.this.data = str;
+                MainActivity.this.txtBarcode.setText(str);
+            }
+
+            /*switch (msg.what) {
+                case R.styleable.Toolbar_subtitleTextAppearance *//*11*//*:
                     String str = msg.obj.toString();
                     if (MainActivity.this.data.equals(str)) {
                         MainActivity.this.count = MainActivity.this.count + 1;
@@ -70,7 +71,7 @@ public class MainActivity extends Activity {
                     MainActivity.this.text.setText(str);
                     MainActivity.this.tv_count.setText(MainActivity.this.count + BuildConfig.FLAVOR);
                 default:
-            }
+            }*/
         }
     }
 
@@ -89,13 +90,14 @@ public class MainActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView((int) R.layout.activity_main);
-        getWindow().setSoftInputMode(32);
+        //getWindow().setSoftInputMode(32);
         this.mScanConnect = new ScanConnect(this, this.mHandler);
         this.mPrintConnect = new PrintConnect(this);
-        this.sb_height.setProgress(39);
+        this.txtBarcode = (TextView) findViewById(R.id.txtBarcode);
+        //this.sb_height.setProgress(39);
     }
 
-    public void onClick(View v) {
+    /*public void onClick(View v) {
         String data = this.text.getText().toString();
         if (TextUtils.isEmpty(data)) {
             Toast.makeText(this, "\u8bf7\u8f93\u5165\u5185\u5bb9", 0).show();
@@ -105,11 +107,11 @@ public class MainActivity extends Activity {
         PrintUtil.setConcentration(this.mPrintConnect.os, this.con);
         int i;
         switch (v.getId()) {
-            case C0191R.id.btn_checktwo /*2131558490*/:
+            case C0191R.id.btn_checktwo *//*2131558490*//*:
                 createTwoCode(data);
-            case C0191R.id.btn_checkone /*2131558491*/:
+            case C0191R.id.btn_checkone *//*2131558491*//*:
                 createOneCode(data);
-            case C0191R.id.btn_printtwo /*2131558493*/:
+            case C0191R.id.btn_printtwo *//*2131558493*//*:
                 createTwoCode(data);
                 if (this.bitmap != null) {
                     this.mPrintConnect.send(this.bitmap);
@@ -119,7 +121,7 @@ public class MainActivity extends Activity {
                         e.printStackTrace();
                     }
                 }
-            case C0191R.id.btn_printone /*2131558494*/:
+            case C0191R.id.btn_printone *//*2131558494*//*:
                 createOneCode(data);
                 if (this.bitmap != null) {
                     this.mPrintConnect.send(this.bitmap);
@@ -129,7 +131,7 @@ public class MainActivity extends Activity {
                         e2.printStackTrace();
                     }
                 }
-            case C0191R.id.btn_print /*2131558495*/:
+            case C0191R.id.btn_print *//*2131558495*//*:
                 int size1 = data.length();
                 i = 0;
                 while (i < size1) {
@@ -142,7 +144,7 @@ public class MainActivity extends Activity {
                     }
                 }
                 this.mPrintConnect.sendCode128(data, this.width, this.height);
-            case C0191R.id.btn_line /*2131558496*/:
+            case C0191R.id.btn_line *//*2131558496*//*:
                 StringBuffer sb = new StringBuffer();
                 sb.delete(0, sb.length());
                 for (i = 0; i < 160; i++) {
@@ -152,7 +154,7 @@ public class MainActivity extends Activity {
                 this.mPrintConnect.send(sb.toString());
             default:
         }
-    }
+    }*/
 
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         switch (event.getKeyCode()) {
