@@ -6,8 +6,6 @@ import android.media.RingtoneManager;
 import android.net.Uri;
 import android.os.Handler;
 import android.os.Message;
-import android.support.v4.view.InputDeviceCompat;
-import android.support.v4.view.accessibility.AccessibilityNodeInfoCompat;
 import android.text.TextUtils;
 import java.io.File;
 import java.io.IOException;
@@ -24,7 +22,6 @@ public class ScanConnect {
     private boolean isScan;
     private Open open;
     public OutputStream os;
-    private Ringtone f13r;
     byte[] responseData;
 
     class InitSerialPort implements Runnable {
@@ -54,10 +51,9 @@ public class ScanConnect {
         this.open = new Open();
         this.isScan = true;
         this.RECV_SCAN = 11;
-        this.responseData = new byte[InputDeviceCompat.SOURCE_GAMEPAD];
+        this.responseData = new byte[1025];
         this.handler = handler;
         this.open.openScan();
-        this.f13r = RingtoneManager.getRingtone(context, Uri.parse("android.resource://" + context.getPackageName() + "/" + C0195R.raw.wet));
         test();
     }
 
@@ -73,13 +69,6 @@ public class ScanConnect {
         new ScanThread().start();
     }
 
-    private void song() {
-        if (this.f13r.isPlaying()) {
-            this.f13r.stop();
-        }
-        this.f13r.play();
-    }
-
     private void readscanpdata() {
         String code = BuildConfig.FLAVOR;
         Arrays.fill(this.responseData, (byte) 0);
@@ -90,7 +79,6 @@ public class ScanConnect {
             code = new String(this.responseData, 0, readcount);
         }
         if (!TextUtils.isEmpty(code)) {
-            song();
             code = replaceBlank(code);
             Message msg = new Message();
             msg.what = this.RECV_SCAN;
@@ -103,7 +91,7 @@ public class ScanConnect {
 
     private void FlushUartBuffer() {
         try {
-            this.is.read(new byte[AccessibilityNodeInfoCompat.ACTION_NEXT_HTML_ELEMENT]);
+            this.is.read(new byte[1024]);
         } catch (IOException e1) {
             e1.printStackTrace();
         }
