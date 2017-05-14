@@ -1,12 +1,12 @@
 package com.cad.halstart;
 
 import android.content.Context;
-import android.media.Ringtone;
-import android.media.RingtoneManager;
-import android.net.Uri;
 import android.os.Handler;
 import android.os.Message;
 import android.text.TextUtils;
+
+import com.obm.mylibrary.Open;
+
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
