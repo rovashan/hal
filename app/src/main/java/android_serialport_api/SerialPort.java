@@ -1,4 +1,4 @@
-package com.cad.halstart;
+package android_serialport_api;
 
 import android.util.Log;
 import java.io.File;
@@ -9,7 +9,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 
-public class SerialPortModel {
+public class SerialPort {
     private static final String LOG_TAG;
     private FileDescriptor mFd;
     private FileInputStream mFileInputStream;
@@ -20,11 +20,11 @@ public class SerialPortModel {
     public native void close();
 
     static {
-        LOG_TAG = SerialPortModel.class.getSimpleName();
+        LOG_TAG = SerialPort.class.getSimpleName();
         System.loadLibrary("serial_port");
     }
 
-    public SerialPortModel(File device, int baudRate, int dataBits, String checkingMode, int stopBits, String flowMode) throws SecurityException, IOException {
+    public SerialPort(File device, int baudRate, int dataBits, String checkingMode, int stopBits, String flowMode) throws SecurityException, IOException {
         if (!(device.canRead() && device.canWrite())) {
             try {
                 Process su = Runtime.getRuntime().exec("/system/bin/su");

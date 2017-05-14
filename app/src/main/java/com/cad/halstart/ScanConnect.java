@@ -14,9 +14,11 @@ import java.io.OutputStream;
 import java.util.Arrays;
 import java.util.regex.Pattern;
 
+import android_serialport_api.SerialPort;
+
 public class ScanConnect {
     public int RECV_SCAN;
-    private SerialPortModel comSerialport;
+    private SerialPort comSerialport;
     private Handler handler;
     public InputStream is;
     private boolean isScan;
@@ -28,7 +30,7 @@ public class ScanConnect {
 
         public void run() {
             try {
-                ScanConnect.this.comSerialport = new SerialPortModel(new File("/dev/ttyHSL2"), 9600, 8, "None", 1, "None");
+                ScanConnect.this.comSerialport = new SerialPort(new File("/dev/ttyHSL2"), 9600, 8, "None", 1, "None");
                 ScanConnect.this.is = ScanConnect.this.comSerialport.getInputStream();
                 ScanConnect.this.os = ScanConnect.this.comSerialport.getOutputStream();
             } catch (Exception e) {

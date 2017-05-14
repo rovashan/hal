@@ -23,6 +23,11 @@ android {
             jni.srcDirs = []
         }
     }
+    externalNativeBuild {
+        ndkBuild {
+            path '../../android-serialport-api/android-serialport-api/project/jni/Android.mk'
+        }
+    }
 }
 
 dependencies {

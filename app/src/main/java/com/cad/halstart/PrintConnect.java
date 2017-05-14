@@ -10,8 +10,10 @@ import java.io.File;
 import java.io.InputStream;
 import java.io.OutputStream;
 
+import android_serialport_api.SerialPort;
+
 public class PrintConnect {
-    private SerialPortModel comSerialport;
+    private SerialPort comSerialport;
     private Context context;
     public InputStream is;
     private Open open;
@@ -22,7 +24,7 @@ public class PrintConnect {
 
         public void run() {
             try {
-                PrintConnect.this.comSerialport = new SerialPortModel(new File("/dev/ttyHSL1"), 115200, 8, "None", 1, "None");
+                PrintConnect.this.comSerialport = new SerialPort(new File("/dev/ttyHSL1"), 115200, 8, "None", 1, "None");
                 PrintConnect.this.is = PrintConnect.this.comSerialport.getInputStream();
                 PrintConnect.this.os = PrintConnect.this.comSerialport.getOutputStream();
                 byte[] a = new byte[]{(byte) 27, (byte) 64, (byte) 27, (byte) 82, (byte) 0};
