@@ -21,7 +21,7 @@ public class ScanConnect {
     private SerialPort comSerialport;
     private Handler handler;
     public InputStream is;
-    private boolean isScan;
+    private boolean isScan = true;
     private Open open;
     public OutputStream os;
     byte[] responseData;
@@ -51,7 +51,6 @@ public class ScanConnect {
 
     public ScanConnect(Context context, Handler handler) {
         this.open = new Open();
-        this.isScan = true;
         this.RECV_SCAN = 11;
         this.responseData = new byte[1025];
         this.handler = handler;

@@ -3,8 +3,6 @@ package com.obm.mylibrary;
 import java.util.Timer;
 import java.util.TimerTask;
 
-//import com.oubama.scandemo;
-
 public class Open {
 
     private static final int LEVEL_HIGH = 1;
