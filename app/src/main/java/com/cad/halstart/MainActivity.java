@@ -28,7 +28,7 @@ public class MainActivity extends Activity {
     private ImageView code_img;
     private int con;
     private int count;
-    private String data;
+    private String barcode;
     private int height;
     private Handler mHandler;
     private PrintConnect mPrintConnect;
@@ -55,7 +55,7 @@ public class MainActivity extends Activity {
             if (!TextUtils.isEmpty(msg.obj.toString())) {
                 String str = msg.obj.toString();
 
-                MainActivity.this.data = str;
+                MainActivity.this.barcode = str;
                 MainActivity.this.txtBarcode.setText(str);
             }
 
@@ -76,7 +76,6 @@ public class MainActivity extends Activity {
     }
 
     public MainActivity() {
-        this.data = BuildConfig.FLAVOR;
         this.con = 1;
         this.speed = 7;
         this.width = 1;
@@ -172,5 +171,14 @@ public class MainActivity extends Activity {
         super.onDestroy();
         this.mScanConnect.stop();
         this.mPrintConnect.stop();
+    }
+
+    public void scanOnClick(View v) {
+        this.mScanConnect.scan();
+    }
+
+    public void printOnClick(View v) {
+        String barcodeStr = this.txtBarcode.getText().toString();
+        this.mPrintConnect.send(barcodeStr);
     }
 }

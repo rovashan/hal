@@ -1,15 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context="com.cad.halstart.MainActivity">
+
+    <Button
+        android:id="@+id/btnScan"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="75dp"
+        android:onClick="scanOnClick"
+        android:text="Scan"
+        tools:layout_editor_absoluteX="160dp"
+        tools:layout_editor_absoluteY="143dp" />
 
     <TextView
         android:id="@+id/txtBarcode"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical|center_horizontal"
+        android:layout_marginTop="10dp"
+        android:layoutDirection="locale"
         android:text="The dark knight returns"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -17,19 +32,14 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/btnScan"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Scan"
-        tools:layout_editor_absoluteX="160dp"
-        tools:layout_editor_absoluteY="143dp" />
-
-    <Button
         android:id="@+id/btnPrint"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="10dp"
+        android:onClick="printOnClick"
         android:text="Print"
         tools:layout_editor_absoluteX="160dp"
         tools:layout_editor_absoluteY="322dp" />
 
-</android.support.constraint.ConstraintLayout>
+</LinearLayout>
