@@ -92,7 +92,7 @@ public class ScanConnect {
 
     private void FlushUartBuffer() {
         try {
-            this.is.read(new byte[1024]);
+            ScanConnect.this.is.read(new byte[1024]);
         } catch (IOException e1) {
             e1.printStackTrace();
         }

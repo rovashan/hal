@@ -38,6 +38,7 @@ public class MainActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView((int) R.layout.activity_main);
+
         this.mScanConnect = new ScanConnect(this, this.mHandler);
         this.mPrintConnect = new PrintConnect(this);
         this.txtBarcode = (TextView) findViewById(R.id.txtBarcode);

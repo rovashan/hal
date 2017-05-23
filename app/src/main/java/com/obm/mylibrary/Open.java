@@ -27,7 +27,8 @@ public class Open {
 
     public void openScan() {
         nativeSetGPIO(9, LEVEL_HIGH);
-        new Timer().schedule(new nativeSetGPIO_8_Low_Timer(), 150);
+        nativeSetGPIO(8, 0);
+        //new Timer().schedule(new nativeSetGPIO_8_Low_Timer(), 150);
     }
 
     public void closeScan() {
