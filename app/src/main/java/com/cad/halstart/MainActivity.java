@@ -18,6 +18,7 @@ public class MainActivity extends Activity {
     private PrintConnect mPrintConnect;
     private ScanConnect mScanConnect;
     private TextView txtBarcode;
+    private MyFileObserver fileWatcher;
 
     class myHandler extends Handler {
 
@@ -41,6 +42,7 @@ public class MainActivity extends Activity {
 
         this.mScanConnect = new ScanConnect(this, this.mHandler);
         this.mPrintConnect = new PrintConnect(this);
+        this.fileWatcher = new MyFileObserver("/sdcard/");
         this.txtBarcode = (TextView) findViewById(R.id.txtBarcode);
     }
 
@@ -70,4 +72,21 @@ public class MainActivity extends Activity {
         String barcodeStr = this.txtBarcode.getText().toString();
         this.mPrintConnect.send(barcodeStr);
     }
+
+    public void startFileWatcher() {
+        this.fileWatcher.startWatching();
+    }
+
+    public void stopFileWatcher() {
+        this.fileWatcher.stopWatching();
+    }
+
+    public void onClickCreateScanFile() {
+
+    }
+
+    public void onClickDeleteScanFile() {
+
+    }
+
 }

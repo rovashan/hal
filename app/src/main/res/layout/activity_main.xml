@@ -9,10 +9,10 @@
 
     <Button
         android:id="@+id/btnScan"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginTop="75dp"
+        android:layout_marginTop="40"
         android:onClick="scanOnClick"
         android:text="Scan"
         tools:layout_editor_absoluteX="160dp"
@@ -33,12 +33,54 @@
 
     <Button
         android:id="@+id/btnPrint"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginTop="10dp"
         android:onClick="printOnClick"
         android:text="Print"
+        tools:layout_editor_absoluteX="160dp"
+        tools:layout_editor_absoluteY="322dp" />
+
+    <Button
+        android:id="@+id/btnStartFw"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="40"
+        android:onClick="startFileWatcher"
+        android:text="Start FileWatcher"
+        tools:layout_editor_absoluteX="160dp"
+        tools:layout_editor_absoluteY="322dp" />
+    <Button
+        android:id="@+id/btnStopFw"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="10dp"
+        android:onClick="stopFileWatcher"
+        android:text="Stop FileWatcher"
+        tools:layout_editor_absoluteX="160dp"
+        tools:layout_editor_absoluteY="322dp" />
+
+    <Button
+        android:id="@+id/btnCreateScanFile"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="40dp"
+        android:onClick="onClickCreateScanFile"
+        android:text="CreateScanFile"
+        tools:layout_editor_absoluteX="160dp"
+        tools:layout_editor_absoluteY="322dp" />
+    <Button
+        android:id="@+id/btnDeleteScanFile"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="10dp"
+        android:onClick="onClickDeleteScanFile"
+        android:text="DeleteScanFile"
         tools:layout_editor_absoluteX="160dp"
         tools:layout_editor_absoluteY="322dp" />
 
