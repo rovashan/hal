@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.EditText;
@@ -18,7 +19,13 @@ public class MainActivity extends Activity {
     private PrintConnect mPrintConnect;
     private ScanConnect mScanConnect;
     private TextView txtBarcode;
-    private MyFileObserver fileWatcher;
+
+    public MyFileObserver fileWatcher = new MyFileObserver("/sdcard/ScanPrintApi/") {
+        @Override
+        public void onEvent(int event, String path) {
+            Log.i("FileObserver.CREATE", "Rover");
+        }
+    };
 
     class myHandler extends Handler {
 
@@ -42,7 +49,7 @@ public class MainActivity extends Activity {
 
         this.mScanConnect = new ScanConnect(this, this.mHandler);
         this.mPrintConnect = new PrintConnect(this);
-        this.fileWatcher = new MyFileObserver("/sdcard/");
+        //this.fileWatcher = new MyFileObserver("/sdcard/");
         this.txtBarcode = (TextView) findViewById(R.id.txtBarcode);
     }
 
@@ -73,19 +80,19 @@ public class MainActivity extends Activity {
         this.mPrintConnect.send(barcodeStr);
     }
 
-    public void startFileWatcher() {
+    public void startFileWatcher(View v) {
         this.fileWatcher.startWatching();
     }
 
-    public void stopFileWatcher() {
+    public void stopFileWatcher(View v) {
         this.fileWatcher.stopWatching();
     }
 
-    public void onClickCreateScanFile() {
+    public void onClickCreateScanFile(View v) {
 
     }
 
-    public void onClickDeleteScanFile() {
+    public void onClickDeleteScanFile(View v) {
 
     }
 
