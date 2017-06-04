@@ -12,7 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="10dp"
         android:onClick="scanOnClick"
         android:text="Scan"
         tools:layout_editor_absoluteX="160dp"
@@ -47,7 +47,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginTop="40dp"
         android:onClick="startFileWatcher"
         android:text="Start FileWatcher"
         tools:layout_editor_absoluteX="160dp"
@@ -57,30 +56,29 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginTop="10dp"
         android:onClick="stopFileWatcher"
         android:text="Stop FileWatcher"
         tools:layout_editor_absoluteX="160dp"
         tools:layout_editor_absoluteY="322dp" />
 
     <Button
-        android:id="@+id/btnCreateScanFile"
+        android:id="@+id/btnStartService"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginTop="40dp"
-        android:onClick="onClickCreateScanFile"
-        android:text="CreateScanFile"
+        android:onClick="onClickStartService"
+        android:text="Start Service"
         tools:layout_editor_absoluteX="160dp"
         tools:layout_editor_absoluteY="322dp" />
     <Button
-        android:id="@+id/btnDeleteScanFile"
+        android:id="@+id/btnStopService"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginTop="10dp"
-        android:onClick="onClickDeleteScanFile"
-        android:text="DeleteScanFile"
+        android:onClick="onClickStopService"
+        android:text="Stop Service"
         tools:layout_editor_absoluteX="160dp"
         tools:layout_editor_absoluteY="322dp" />
 
