@@ -37,11 +37,12 @@ public class MainActivity extends Activity {
 
                 if (path.equals("Scan.txt")) {
                     Scan();
-                    DeleteScanFile();
+                    DeleteFile("Scan.txt");
                 }
 
                 if (path.equals("pls_print.txt")) {
                     PrintFile();
+                    DeleteFile("pls_print.txt");
                 }
             }
         }
@@ -135,7 +136,7 @@ public class MainActivity extends Activity {
     }
 
     public void onClickDeleteScanFile(View v) {
-        DeleteScanFile();
+        DeleteFile("Scan.txt");
     }
 
     public void CreateScanResultFile(String scanStr) {
@@ -166,14 +167,14 @@ public class MainActivity extends Activity {
         }
     }
 
-    public void DeleteScanFile() {
+    public void DeleteFile(String fileName) {
         if (!Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)){
             Log.e("SDCARD ", "No SD Card present");
         } else {
             try {
                 File newFolder = new File(Environment.getExternalStorageDirectory(), "ScanPrintApi");
                 try {
-                    File file = new File(newFolder, "Scan" + ".txt");
+                    File file = new File(newFolder, fileName);
 
                     if (file.exists()) {
                         file.delete();
