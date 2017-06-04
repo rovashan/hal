@@ -199,7 +199,9 @@ public class MainActivity extends Activity {
                 try {
                     File file = new File(newFolder, "pls_print" + ".txt");
                     byte[] printContent = ReadBytesFromFile(file);
-                    this.mPrintConnect.send(printContent);
+                    String str = new String(printContent, "UTF-8");
+
+                    this.mPrintConnect.send(str);
                 } catch (Exception ex) {
                     System.out.println("ex: " + ex);
                 }
