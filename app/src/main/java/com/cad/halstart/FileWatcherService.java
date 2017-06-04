@@ -63,9 +63,11 @@ public class FileWatcherService extends Service {
         this.mPrintConnect = new PrintConnect(this);
     }
 
+
     @Override
-    public void onStart(Intent intent, int startid) {
+    public int onStartCommand(Intent intent, int flags, int startId) {
         fileWatcher.startWatching();
+        return START_STICKY;
     }
     @Override
     public void onDestroy() {

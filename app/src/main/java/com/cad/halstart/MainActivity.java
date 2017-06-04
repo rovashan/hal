@@ -1,6 +1,7 @@
 package com.cad.halstart;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.os.Environment;
@@ -245,4 +246,12 @@ public class MainActivity extends Activity {
         is.close();
         return bytes;
     }
+
+    public void onClickStartService(View v) {
+        startService(new Intent(this.getApplicationContext(), FileWatcherService.class));
+    }
+    public void onClickStopService(View v) {
+        stopService(new Intent(this.getApplicationContext(), FileWatcherService.class));
+    }
+
 }
