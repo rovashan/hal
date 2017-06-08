@@ -20,8 +20,8 @@ public class ScanConnect {
     public int RECV_SCAN;
     private SerialPort comSerialport;
     private Handler handler;
+    private boolean isScan;
     public InputStream is;
-    private boolean isScan = true;
     private Open open;
     public OutputStream os;
     byte[] responseData;
@@ -51,6 +51,7 @@ public class ScanConnect {
 
     public ScanConnect(Context context, Handler handler) {
         this.open = new Open();
+        this.isScan = true;
         this.RECV_SCAN = 11;
         this.responseData = new byte[1025];
         this.handler = handler;
@@ -73,7 +74,8 @@ public class ScanConnect {
     private void readscanpdata() {
         String code = BuildConfig.FLAVOR;
         Arrays.fill(this.responseData, (byte) 0);
-        FlushUartBuffer();
+        //FlushUartBuffer();
+        flush();
         this.open.startScan();
         int readcount = read();
         if (readcount > 0) {
@@ -92,7 +94,7 @@ public class ScanConnect {
 
     private void FlushUartBuffer() {
         try {
-            ScanConnect.this.is.read(new byte[1024]);
+            this.is.read(new byte[1024]);
         } catch (IOException e1) {
             e1.printStackTrace();
         }
@@ -116,6 +118,31 @@ public class ScanConnect {
         if (available > 0) {
             try {
                 available = this.is.read(this.responseData);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        return available;
+    }
+
+    private int flush() {
+        int available = 0;
+        int index = 0;
+        while (index < 11) {
+            try {
+                Thread.sleep(100);
+                available = this.is.available();
+                if (available > 0) {
+                    break;
+                }
+                index++;
+            } catch (Exception e1) {
+                e1.printStackTrace();
+            }
+        }
+        if (available > 0) {
+            try {
+                available = this.is.read(new byte[1024]);
             } catch (IOException e) {
                 e.printStackTrace();
             }
