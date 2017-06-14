@@ -103,7 +103,7 @@ public class ScanConnect {
     private int read() {
         int available = 0;
         int index = 0;
-        while (index < 11) {
+        while (index < 18) {
             try {
                 Thread.sleep(100);
                 available = this.is.available();
@@ -128,7 +128,7 @@ public class ScanConnect {
     private int flush() {
         int available = 0;
         int index = 0;
-        while (index < 11) {
+        while (index < 5) {
             try {
                 Thread.sleep(100);
                 available = this.is.available();
